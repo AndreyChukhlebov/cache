@@ -1,0 +1,13 @@
+greeting:
+  message: "hello"
+
+quarkus:
+  vertx:
+    worker-pool-size: 50
+    # The number of event loops. 2 x the number of core by default.
+    event-loops-pool-size: 2
+  grpc:
+    server:
+      # Number of gRPC server verticle instances. Should not exceed the amount of event loops.
+      instances: 2
+      port: 9100

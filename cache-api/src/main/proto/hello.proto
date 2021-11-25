@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ru.sbrf.cache";
+option java_outer_classname = "HelloGrpcProto";
+
+package hello;
+
+
+service CacheSevice {
+    rpc get (CacheRequest) returns (CacheResponse);
+}
+
+message CacheRequest {
+    string cacheRequestInfo = 1;
+}
+
+message CacheResponse {
+    string cacheResponseInfo = 1;
+}
+
+service HelloGrpc {
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}

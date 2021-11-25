@@ -1,0 +1,6 @@
+grpcurl -plaintext localhost:9001 list
+
+grpcurl -plaintext \
+    -d '{"dataRequest": "inffo"}' \
+    localhost:9001 \
+    hello.SimpleSevice/get
