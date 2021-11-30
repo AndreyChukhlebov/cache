@@ -1,6 +1,5 @@
 package ru.sbrf.cache;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 
@@ -17,13 +16,9 @@ public class HelloGrpcServiceTest {
 
     @Test
     public void testHello() {
-        HelloReply reply = helloGrpc
-                .sayHello(HelloRequest.newBuilder().setName("Neo").build()).await().atMost(Duration.ofSeconds(5));
-        helloGrpc
-                .sayHello(HelloRequest.newBuilder().setName("Neo").build()).await().atMost(Duration.ofSeconds(5));
-        helloGrpc
-                .sayHello(HelloRequest.newBuilder().setName("Neo").build()).await().atMost(Duration.ofSeconds(5));
-        assertEquals("Hello Neo!", reply.getMessage());
+        helloGrpc.sayHello(
+                        HelloRequest.newBuilder().setName("Neo").build()).await()
+                .atMost(Duration.ofSeconds(5));
     }
 
 }

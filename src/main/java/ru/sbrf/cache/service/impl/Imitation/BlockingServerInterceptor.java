@@ -9,20 +9,19 @@ import io.vertx.core.Handler;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 
+import javax.enterprise.inject.spi.Prioritized;
+import javax.inject.Singleton;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class BlockingServerInterceptor implements ServerInterceptor {
+@Singleton
+public class BlockingServerInterceptor implements ServerInterceptor, Prioritized {
 
-    private Vertx vertx;
+    final Vertx vertx;
 
     public BlockingServerInterceptor(Vertx vertx) {
-        this();
         this.vertx = vertx;
-    }
-
-    public BlockingServerInterceptor() {
     }
 
     @Override
@@ -31,7 +30,6 @@ public class BlockingServerInterceptor implements ServerInterceptor {
                                                                  ServerCallHandler<ReqT, RespT> next) {
 
         ReplayListener<ReqT> replay = new ReplayListener<>();
-
         vertx.executeBlocking(new Handler<Promise<Object>>() {
             @Override
             public void handle(Promise<Object> f) {
@@ -42,6 +40,11 @@ public class BlockingServerInterceptor implements ServerInterceptor {
         }, false, null);
 
         return replay;
+    }
+
+    @Override
+    public int getPriority() {
+        return 1;
     }
 
     /**
