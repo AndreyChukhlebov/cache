@@ -44,7 +44,7 @@ public class BlockingServerInterceptor implements ServerInterceptor, Prioritized
 
     @Override
     public int getPriority() {
-        return 1;
+        return 0;
     }
 
     /**

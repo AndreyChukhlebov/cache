@@ -30,6 +30,6 @@ public class TestInterceptor implements ServerInterceptor, Prioritized {
 
     @Override
     public int getPriority() {
-        return 0;
+        return 1;
     }
 }
